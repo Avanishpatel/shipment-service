@@ -10,7 +10,7 @@ pipeline {
        }
        stage('Deploy'){
            steps{
-               sh 'cf push shipment-service -p ./build/libs/shipment-service-0.0.1-SNAPSHOT.jar --no-start --random-route'
+               sh 'cf push shipment-service -p ./build/libs/shipment-service-0.0.1-SNAPSHOT.jar'
            }
        }
     }
