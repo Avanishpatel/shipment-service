@@ -32,8 +32,8 @@ public class ShipmentService {
         return shipmentRepository.findAll();
     }
 
-    public Optional<Shipment> getShipment(long id){
-        return shipmentRepository.findById(id);
+    public Shipment getShipment(long id){
+        return shipmentRepository.findById(id).get();
     }
 
     public Shipment addShipment(Shipment shipment) {
@@ -45,8 +45,11 @@ public class ShipmentService {
         return shipmentRepository.save(shipment);
     }
 
-    public void deleteShipment(long id) {
+    public Shipment deleteShipment(long id) {
+        Shipment shipment = shipmentRepository.findById(id).get();
+
         shipmentRepository.deleteById(id);
+        return shipment;
 
     }
 

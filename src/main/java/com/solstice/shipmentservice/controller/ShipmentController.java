@@ -31,7 +31,7 @@ public class ShipmentController {
 
     @GetMapping("/{id}")
     @HystrixCommand(fallbackMethod = "getShipmentFallBack")
-    public Optional<Shipment> getShipment(@PathVariable("id") long id) {
+    public Shipment getShipment(@PathVariable("id") long id) {
         return shipmentService.getShipment(id);
     }
 
@@ -52,10 +52,10 @@ public class ShipmentController {
 
     @DeleteMapping("/{id}")
     @HystrixCommand(fallbackMethod = "deleteShipmentFallBack")
-    public void deleteShipment(@PathVariable("id") long id) {
-        shipmentService.deleteShipment(id);
-        logger.info("Shipment deleted.");
+    public Shipment deleteShipment(@PathVariable("id") long id) {
 
+        logger.info("Shipment deleted.");
+        return shipmentService.deleteShipment(id);
     }
 
     @GetMapping("/account/{id}")
@@ -71,9 +71,9 @@ public class ShipmentController {
         return (Iterable<Shipment>) new Shipment();
     }
 
-    public Optional<Shipment> getShipmentFallBack(long id) {
+    public Shipment getShipmentFallBack(long id) {
         logger.error("Fallback while getting Shipment with ID " + id);
-        return Optional.of(new Shipment());
+        return new Shipment();
     }
 
     public Shipment addShipmentFallBack(Shipment shipment) {
@@ -86,8 +86,9 @@ public class ShipmentController {
         return new Shipment();
     }
 
-    public void deleteShipmentFallBack(long id) {
+    public Shipment deleteShipmentFallBack(long id) {
         logger.info("Fallback while deleting Shipment");
+        return new Shipment();
 
     }
 
