@@ -60,9 +60,9 @@ public class ShipmentController {
     }
 
 
-//    @HystrixCommand(fallbackMethod = "getShipmentsByAccountFallback", commandProperties = {
-//            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")
-//    })
+    @HystrixCommand(fallbackMethod = "getShipmentsByAccountFallback", commandProperties = {
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")
+    })
     @GetMapping("/account/{id}")
     public List<ShipmentAggregation> getShipmentsByAccount(@PathVariable("id") long accountId) {
 
@@ -96,13 +96,13 @@ public class ShipmentController {
 
     }
 
-//    public List<ShipmentAggregation> getShipmentsByAccountFallback(long accountId) {
-//
-//        List<ShipmentAggregation> shipmentList = new ArrayList<>();
-//
-//        logger.error("Fallback while getting Shipment Aggregation");
-//        return shipmentList;
-//    }
+    public List<ShipmentAggregation> getShipmentsByAccountFallback(long accountId) {
+
+        List<ShipmentAggregation> shipmentList = new ArrayList<>();
+
+        logger.error("Fallback while getting Shipment Aggregation");
+        return shipmentList;
+    }
 
 
 }
