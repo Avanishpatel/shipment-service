@@ -60,9 +60,7 @@ public class ShipmentController {
     }
 
 
-    @HystrixCommand(fallbackMethod = "getShipmentsByAccountFallback", commandProperties = {
-            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")
-    })
+    @HystrixCommand(fallbackMethod = "getShipmentsByAccountFallback")
     @GetMapping("/account/{id}")
     public List<ShipmentAggregation> getShipmentsByAccount(@PathVariable("id") long accountId) {
 
