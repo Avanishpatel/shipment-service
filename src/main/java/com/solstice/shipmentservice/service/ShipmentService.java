@@ -74,4 +74,8 @@ public class ShipmentService {
 
         return shipmentAggregations;
     }
+
+    public long getLastShipmentId() {
+        return shipmentRepository.findLastId();
+    }
 }

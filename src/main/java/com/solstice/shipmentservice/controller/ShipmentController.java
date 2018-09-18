@@ -68,6 +68,10 @@ public class ShipmentController {
         return shipmentService.getShipmentsByAccount(accountId);
     }
 
+    @GetMapping("/shipmentId")
+    public long getLastShipmentId(){
+        return shipmentService.getLastShipmentId();
+    }
 
     public Iterable<Shipment> getAllShipmentsFallBack() {
         logger.error("Fallback while getting list of shipemnts");
