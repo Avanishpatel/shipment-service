@@ -1,6 +1,7 @@
 package com.solstice.shipmentservice.controller;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.solstice.shipmentservice.domain.Shipment;
 import com.solstice.shipmentservice.domain.ShipmentAggregation;
 import com.solstice.shipmentservice.service.ShipmentService;
@@ -59,7 +60,9 @@ public class ShipmentController {
     }
 
     @GetMapping("/account/{id}")
-    @HystrixCommand(fallbackMethod = "getShipmentsByAccountFallback")
+    @HystrixCommand(fallbackMethod = "getShipmentsByAccountFallback", commandProperties = {
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")
+    })
     public List<ShipmentAggregation> getShipmentsByAccount(@PathVariable("id") long accountId) {
 
         return shipmentService.getShipmentsByAccount(accountId);
