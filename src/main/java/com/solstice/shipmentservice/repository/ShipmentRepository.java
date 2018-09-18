@@ -9,5 +9,4 @@ public interface ShipmentRepository extends CrudRepository<Shipment, Long> {
 
     Iterable<Shipment> findAllByAccountIdOrderByDeliveryDate(long id);
 
-    Shipment findByAccountId(long id);
 }
