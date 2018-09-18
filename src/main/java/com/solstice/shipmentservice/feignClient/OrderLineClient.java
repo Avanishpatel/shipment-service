@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Optional;
 
-@FeignClient(url = "http://order-orderline-service-excellent-duiker.cfapps.io")
+@FeignClient(name = "order-orderline-service",url = "http://order-orderline-service-excellent-duiker.cfapps.io")
 public interface OrderLineClient {
 
     @RequestMapping(path = "/orderlines/{id}", method = RequestMethod.GET)

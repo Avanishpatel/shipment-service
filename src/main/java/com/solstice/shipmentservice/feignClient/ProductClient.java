@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 
-@FeignClient(url = "http://product-service-sleepy-wildebeest.cfapps.io")
+@FeignClient(name = "product-service",url = "http://product-service-sleepy-wildebeest.cfapps.io")
 public interface ProductClient {
 
     @RequestMapping(path = "/products/{id}", method = RequestMethod.GET)
