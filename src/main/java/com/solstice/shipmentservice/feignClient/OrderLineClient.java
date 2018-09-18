@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Optional;
 
-@FeignClient(name ="order-orderline-service")
+@FeignClient("order-orderline-service")
 public interface OrderLineClient {
 
     @RequestMapping(path = "/orderlines/{id}", method = RequestMethod.GET)
